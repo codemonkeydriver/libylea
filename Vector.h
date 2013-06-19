@@ -91,4 +91,11 @@ class Vector
 
         const_iterator end() const
         {returnn &objects[ size() ]; }
+
+        enum { SPARE_CAPACITY = 16 };
+
+    private:
+        int theSize;
+        int theCapacity;
+        Object * objects;
 }
