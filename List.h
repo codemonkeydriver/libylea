@@ -50,18 +50,59 @@ class List
                     {  }
 
                     friend class List<Object>;
-            }
+            };
 
             class iterator : public const_iterator
-                { }
+            {
+                public:
+                    iterator()
+                    { }
+
+                    Object & operator* ()
+                    { return retrieve(); }
+                    const Object & operator* () const
+                    { return const_iterator::operator*(); }
+
+                    iterator & operator++ ()
+                    { current = current->next; }
+
+                    iterator & operator++ (int)
+                    {
+                        iterator old = *this;
+                        ++( *this );
+                        return old;
+                    }
+
+                protected:
+                    iterator(Node *p) : const_iterator(p)
+                    {}
+
+                friend class List<Object>
+            };
 
     public:
             List()
-            {}
+            { init(); }
             List(const List & rhs)
-            {}
+            {
+                init();
+                *this = rhs;
+            }
             ~List()
-            {}
+            {
+                init();
+                *this = rhs;
+            }
+
+            const List & operator= (const List & rhs)
+            {
+                if(this == &rhs)
+                    return *this;
+                clear();
+                for( const_iterator itr = rhs.begin(); itr != rhs.end(); ++itr)
+                    push_back(*itr);
+                return *this;
+            }
 
             iterator begin()
             { return iterator (head->next); }
@@ -112,5 +153,11 @@ class List
             Node *tail;
 
             void init()
-            {}
+            {
+                theSize = 0;
+                head = new Node;
+                tail = new tail;
+                head->next = tail;
+                head->prev = head;
+            }
 }
