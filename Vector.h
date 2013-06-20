@@ -90,7 +90,7 @@ class Vector
         { return &objects[ size() ]; }
 
         const_iterator end() const
-        {returnn &objects[ size() ]; }
+        {return &objects[ size() ]; }
 
         enum { SPARE_CAPACITY = 16 };
 
