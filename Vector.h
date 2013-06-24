@@ -20,7 +20,7 @@ class Vector
                 theCapacity = rhs.theCapacity;
 
                 objects = new Object[ theCapacity() ];
-                for(int k = 0; k <size(); k++)
+                for(int k = 0; k < size(); k++)
                     objects[k] = rhs.objects[k];
             }
             return *this;
@@ -52,7 +52,7 @@ class Vector
         Object & operator[] (int index)
         { return objects [ index ]; }
 
-        const Object & operator[](int index) const
+        const Object & operator[] (int index) const
         { return objects[index]; }
 
         bool empty() const
@@ -75,7 +75,7 @@ class Vector
         { theSize--; }
 
         const Object & back () const
-        { return objects[ theSize -1 ]; }
+        { return objects[ theSize - 1 ]; }
 
         typedef Object * iterator;
         typedef const Object * const_iterator;

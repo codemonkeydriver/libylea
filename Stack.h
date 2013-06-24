@@ -72,12 +72,22 @@ class Stack
         }
 
         void pop_back(const Object & x)
-        { return objects[theSize - 1]; }
+        { return objects[ theSize - 1 ]; }
 
         const Object & back() const
-        { return objects[thesize - 1]; }
+        { return objects[ thesize - 1 ]; }
+
+        typedef Object * iterator;
+        typedef Object * const_iterator;
+
+        iterator top()
+        { return &objects[ size() ]; }
+
+        const_iterator top()
+        { return &Object[ size() ]; }
 
         enum { SPARE_CAPACITY = 16 };
+
     private:
         int theSize;
         int theCapacity;
