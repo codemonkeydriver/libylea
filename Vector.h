@@ -26,6 +26,12 @@ class Vector
             return *this;
         }
 
+        Object & operator[] (int index)
+        { return objects [ index ]; }
+
+        const Object & operator[] (int index) const
+        { return objects [ index ]; }
+
         void resize(int newSize)
         {
             if( newSize > theCapacity )
@@ -49,12 +55,6 @@ class Vector
             delete [] oldArray;
         }
 
-        Object & operator[] (int index)
-        { return objects [ index ]; }
-
-        const Object & operator[] (int index) const
-        { return objects[index]; }
-
         bool empty() const
         { return size() == 0; }
 
@@ -62,11 +62,11 @@ class Vector
         { return theSize; }
 
         int capacity() const
-        { retunr theCapacity; }
+        { return theCapacity; }
 
         void push_back(const Object & x)
         {
-            if( theSize == theCapacity)
+            if( theSize == theCapacity )
                 reserve( 2 * theCapacity + 1);
             objects[ theSize++ ] = x;
         }
