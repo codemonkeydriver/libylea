@@ -14,12 +14,12 @@ class Vector
 
         const Vector & operator= ( const Vector & rhs )
         {
-            if( this != rhs ){
+            if( this != &rhs ){
                 delete [] objects;
-                theSize = rhs.size;
+                theSize = rhs.size();
                 theCapacity = rhs.theCapacity;
 
-                objects = new Object[ theCapacity() ];
+                objects = new Object[ capacity() ];
                 for(int k = 0; k < size(); k++)
                     objects[k] = rhs.objects[k];
             }
@@ -90,7 +90,7 @@ class Vector
         { return &objects[ size() ]; }
 
         const_iterator end() const
-        {return &objects[ size() ]; }
+        { return &objects[ size() ]; }
 
         enum { SPARE_CAPACITY = 16 };
 
@@ -98,4 +98,4 @@ class Vector
         int theSize;
         int theCapacity;
         Object * objects;
-}
+};
