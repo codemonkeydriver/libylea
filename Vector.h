@@ -1,13 +1,23 @@
+#include <cstdarg>
 template <typename Object>
 class Vector
 {
     public:
+        /*Constructors and Destructor*/
         explicit Vector(int initSize = 0) :
             theSize( initSize ), theCapacity(initSize + SPARE_CAPACITY)
         { objects = new Object[ theCapacity ]; }
 
         Vector(const Vector & rhs ) : objects( NULL )
         { operator=( rhs ); }
+
+        Vector(int initSize, Object obj) :
+            theSize(initSize), theCapacity(initSize + SPARE_CAPACITY)
+        {
+            objects = new Object[ initSize ];
+            for(int i = 0; i < initSize; i++)
+                objects[i] = obj;
+        }
 
         ~Vector()
         { delete [] objects; }
@@ -32,6 +42,7 @@ class Vector
         const Object & operator[] (int index) const
         { return objects [ index ]; }
 
+        /*Insert and Remove operations*/
         void resize(int newSize)
         {
             if( newSize > theCapacity )
@@ -58,6 +69,7 @@ class Vector
         bool empty() const
         { return size() == 0; }
 
+        /*Nonmodifying operation*/
         int size() const
         { return theSize; }
 
@@ -77,6 +89,7 @@ class Vector
         const Object & back () const
         { return objects[ theSize - 1 ]; }
 
+        /*Iterator and Remove Operator*/
         typedef Object * iterator;
         typedef const Object * const_iterator;
 
