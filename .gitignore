@@ -11,3 +11,8 @@
 *.lai
 *.la
 *.a
+
+#temp file
+*.h.swp
+*.c.swp
+
