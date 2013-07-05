@@ -70,6 +70,19 @@ class Vector
         { return size() == 0; }
 
         /*Nonmodifying operation*/
+       bool operator==(const Vector & rhs)
+       {
+           if(size() != rhs.size())
+               return false;
+           else{
+                for(int i = 0; i < theSize; i++){
+                    if(objects[i] != rhs.objects[i])
+                        return false;
+                }
+           }
+           return true;
+       }
+
         int size() const
         { return theSize; }
 
