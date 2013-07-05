@@ -1,5 +1,5 @@
 #include <cstdarg>
-template <typename Object>
+template <class Object>
 class Vector
 {
     public:
@@ -82,6 +82,22 @@ class Vector
            }
            return true;
        }
+
+       bool operator!=(const Vector & rhs)
+       {
+            if(size() != rhs.size())
+                return true;
+            else{
+                for(int i = 0; i < theSize; i++){
+                    if(objects[i] != rhs.objects[i])
+                        return true;
+                }
+            }
+            return false;
+       }
+
+       const int max_size()
+       { return Object(-1) / sizeof(Object); }
 
         int size() const
         { return theSize; }
