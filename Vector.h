@@ -69,7 +69,30 @@ class Vector
         bool empty() const
         { return size() == 0; }
 
+        void clear()
+        {
+            int size = theSize;
+        }
+
+        void push_back(const Object & x)
+        {
+            if( theSize == theCapacity )
+                reserve( 2 * theCapacity + 1);
+            objects[ theSize++ ] = x;
+        }
+
+        void pop_back()
+        { theSize--; }
+
+       void shrink_to_fit()
+       {
+           if(theSize < theCapacity )
+               theCapacity = theSize;
+       }
+
         /*Nonmodifying operation*/
+       typedef unsigned long size_t;
+
        bool operator==(const Vector & rhs)
        {
            if(size() != rhs.size())
@@ -96,29 +119,24 @@ class Vector
             return false;
        }
 
-       const int max_size()
+       bool operator<=(const Vector & rhs);
+       bool operator>=(const Vector & rhs);
+       bool operator>(const Vector & rhs);
+       bool operator<(const Vector & rhs);
+
+       const size_t max_size()
        { return Object(-1) / sizeof(Object); }
 
-        int size() const
-        { return theSize; }
+       size_t size() const
+       { return theSize; }
 
-        int capacity() const
-        { return theCapacity; }
+       size_t capacity() const
+       { return theCapacity; }
 
-        void push_back(const Object & x)
-        {
-            if( theSize == theCapacity )
-                reserve( 2 * theCapacity + 1);
-            objects[ theSize++ ] = x;
-        }
 
-        void pop_back(const Object & x)
-        { theSize--; }
-
-        const Object & back () const
+       const Object & back () const
         { return objects[ theSize - 1 ]; }
 
-        /*Iterator and Remove Operator*/
         typedef Object * iterator;
         typedef const Object * const_iterator;
 
